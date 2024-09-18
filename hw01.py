@@ -45,7 +45,7 @@ def two_of_three(i, j, k):
     >>> two_of_three(5, 5, 5)
     50
     """
-    return i*i + j*j if max(i, j, k) == k else j*j + k*k if max(i, j, k) == i else i*i + k*k if max(i, j, k) == j
+    return i*i + j*j if max(i, j, k) == k else j*j + k*k if max(i, j, k) == i else i*i + k*k   # Doesn't need the last "if"
 
 def two_of_three_syntax_check():
     """Check that your two_of_three code consists of nothing but a return statement.
