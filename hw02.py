@@ -36,7 +36,38 @@ def product(n, term):
         >>> product_identity(5)
         120
         """
+        total, k = 0, 1
+        while k <= n:   
+            total, k = total * k, k + 1
+        return total 
         
+    def product_square(n):
+        """Product the first N squares of natural numbers
+        >>> product_square(3)
+        36
+        """
+        total, k = 0, 1
+        while k <= n:
+            total = total * pow(k, 2), k + 1
+        return total 
+    
+    def product_triple(n):
+        """Product the first N triples of natural numbers
+        >>> product_triple(3)
+        162"""
+        total, k = 0, 1
+        while k <= n:
+            total = total * (3 * k), k + 1
+        return total
+    
+    def product_increment(n):
+        """Product the first N increment of natual numbers
+        >>>product_increment(3)
+        24"""
+        total, k = 0, 1
+        while k <= n:
+            total = total * (k + 1), k + 1
+        return total 
 
 
 def accumulate(fuse, start, n, term):
