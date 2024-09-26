@@ -91,35 +91,35 @@ def accu_identity(fuse, start, n):
     """accumulate the first N natural numbers.
     >>>accu_identity(add, 0, 5)
     15"""
-    total, x = start, 1
-    while x <= n:
-        total, x = fuse(total, x), x + 1
-    return total
+    # total, x = start, 1
+    # while x <= n:
+    #     total, x = fuse(total, x), x + 1
+    return accumulate(fuse, start, n, identity)
 
 def accu_square(fuse, start, n):
     """accumulate the first N squares of natural numbers
     >>>accu_square(mul, 2, 3)
     72"""
-    total, x = start, 1
-    while x <= n:
-        total, x = fuse(total, x * x), x + 1
-    return total
+    # total, x = start, 1
+    # while x <= n:
+    #     total, x = fuse(total, x * x), x + 1
+    return accumulate(fuse, start, n, square)
 
 def accu_triple(fuse, start, n):
     """accumulate the first N triples of natural numbers
     """
-    total, x = start, 1
-    while x <= n:
-        total, x = fuse(total, 3 * x), x + 1
-    return total
+    # total, x = start, 1
+    # while x <= n:
+    #     total, x = fuse(total, 3 * x), x + 1
+    return accumulate(fuse, start, n, triple)
 
 def accu_increment(fuse, start, n):
     """accumulate the first N increment of natural numbers
     """
-    total, x = start, 1
-    while x <= n:
-        total, x = fuse(total, x + 1), x + 1 
-    return total
+    # total, x = start, 1
+    # while x <= n:
+    #     total, x = fuse(total, x + 1), x + 1 
+    return accumulate(fuse, start, n, increment)
 
 
 def summation_using_accumulate(n, term):
