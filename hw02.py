@@ -79,13 +79,17 @@ def accumulate(fuse, start, n, term):
     >>> accumulate(mul, 2, 3, square)    # 2 * 1^2 * 2^2 * 3^2
     72
     >>> # 2 + (1^2 + 1) + (2^2 + 1) + (3^2 + 1)
-    >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)        
+    >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)        # def increment(x, y): return x + y + 1
     19
     """
+    fuse(total, term(x)) = add(total, term(x)) or mul(total, term(x))
     total, x = start, 1 
     while x <= n:
         total, x = fuse(total, term(x)), x + 1
     return total
+
+# def fuse(total, term(x)):
+#     return add(total, term(x)), mul(total, term(x))
 
 def accu_identity(fuse, start, n):
     """accumulate the first N natural numbers.
