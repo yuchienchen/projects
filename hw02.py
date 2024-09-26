@@ -82,7 +82,7 @@ def accumulate(fuse, start, n, term):
     >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)        # def increment(x, y): return x + y + 1
     19
     """
-    fuse(total, term(x)) = add(total, term(x)) or mul(total, term(x))
+    # fuse(total, term(x)) == add(total, term(x)) or mul(total, term(x))        This line doesn’t serve a purpose here. The actual fusion happens inside the while loop via the fuse function.
     total, x = start, 1 
     while x <= n:
         total, x = fuse(total, term(x)), x + 1
@@ -138,7 +138,7 @@ def summation_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(summation_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return summation(n, term)
+    return accumulate(add, 0, n, term)
 
 
 def product_using_accumulate(n, term):
@@ -153,7 +153,7 @@ def product_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(product_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return product(n, term)
+    return accumulate(mul, 1, n, term)
 
 
 def make_repeater(f, n):
