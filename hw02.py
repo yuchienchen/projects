@@ -169,5 +169,16 @@ def make_repeater(f, n):
     >>> make_repeater(square, 3)(5) # square(square(square(5)))
     390625
     """
-    "*** YOUR CODE HERE ***"
+    f == square, triple, increment
+    def repeater(x):
+        for x in range(n):
+            total = total * f(x)
+        return total
+    return repeater 
+
+# def add_n(x):
+#     return x + n
+
+# def triple_n(x):
+#     return x * 3
 
