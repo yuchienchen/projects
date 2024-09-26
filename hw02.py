@@ -79,10 +79,47 @@ def accumulate(fuse, start, n, term):
     >>> accumulate(mul, 2, 3, square)    # 2 * 1^2 * 2^2 * 3^2
     72
     >>> # 2 + (1^2 + 1) + (2^2 + 1) + (3^2 + 1)
-    >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)
+    >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)        
     19
     """
-    "*** YOUR CODE HERE ***"
+    total, x = start, 1 
+    while x <= n:
+        total, x = fuse(total, term(x)), x + 1
+    return total
+
+def accu_identity(fuse, start, n):
+    """accumulate the first N natural numbers.
+    >>>accu_identity(add, 0, 5)
+    15"""
+    total, x = start, 1
+    while x <= n:
+        total, x = fuse(total, x), x + 1
+    return total
+
+def accu_square(fuse, start, n):
+    """accumulate the first N squares of natural numbers
+    >>>accu_square(mul, 2, 3)
+    72"""
+    total, x = start, 1
+    while x <= n:
+        total, x = fuse(total, x * x), x + 1
+    return total
+
+def accu_triple(fuse, start, n):
+    """accumulate the first N triples of natural numbers
+    """
+    total, x = start, 1
+    while x <= n:
+        total, x = fuse(total, 3 * x), x + 1
+    return total
+
+def accu_increment(fuse, start, n):
+    """accumulate the first N increment of natural numbers
+    """
+    total, x = start, 1
+    while x <= n:
+        total, x = fuse(total, x + 1), x + 1 
+    return total
 
 
 def summation_using_accumulate(n, term):
@@ -97,7 +134,7 @@ def summation_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(summation_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return summation(n, term)
 
 
 def product_using_accumulate(n, term):
@@ -112,7 +149,7 @@ def product_using_accumulate(n, term):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(product_using_accumulate)).body[0].body]
     ['Expr', 'Return']
     """
-    return ____
+    return product(n, term)
 
 
 def make_repeater(f, n):
