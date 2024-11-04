@@ -1,46 +1,46 @@
-HW_SOURCE_FILE=__file__
+# HW_SOURCE_FILE=__file__
 
 
-def num_eights(n):
-    """Returns the number of times 8 appears as a digit of n.
+# def num_eights(n):
+#     """Returns the number of times 8 appears as a digit of n.
 
-    >>> num_eights(3)
-    0
-    >>> num_eights(8)
-    1
-    >>> num_eights(88888888)
-    8
-    >>> num_eights(2638)
-    1
-    >>> num_eights(86380)
-    2
-    >>> num_eights(12345)
-    0
-    >>> num_eights(8782089)
-    3
-    >>> from construct_check import check
-    >>> # ban all assignment statements
-    >>> check(HW_SOURCE_FILE, 'num_eights',
-    ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'For', 'While'])
-    True
-    """
-    count = 0
-    if n == 8:
-        return 1
-    elif 0 < n < 8 or 8 < n < 10:
-        return 0
-    else:
-        # all_but_last, last = n // 10, n % 10
-        print(n % 10)
-        if n % 10 == 8:
-            count += 1 
+#     >>> num_eights(3)
+#     0
+#     >>> num_eights(8)
+#     1
+#     >>> num_eights(88888888)
+#     8
+#     >>> num_eights(2638)
+#     1
+#     >>> num_eights(86380)
+#     2
+#     >>> num_eights(12345)
+#     0
+#     >>> num_eights(8782089)
+#     3
+#     >>> from construct_check import check
+#     >>> # ban all assignment statements
+#     >>> check(HW_SOURCE_FILE, 'num_eights',
+#     ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'For', 'While'])
+#     True
+#     """
+#     count = 0
+#     if n == 8:
+#         return 1
+#     elif 0 < n < 8 or 8 < n < 10:
+#         return 0
+#     else:
+#         # all_but_last, last = n // 10, n % 10
+#         print(n % 10)
+#         if n % 10 == 8:
+#             count += 1 
 
-        num_eights(n // 10)
-        if num_eights(n // 10) == 8 :
-            count += 1
-        return count
+#         num_eights(n // 10)
+#         if num_eights(n // 10) == 8 :
+#             count += 1
+#         return count
 
-num_eights(86380)
+# num_eights(86380)
 
 # def digit_distance(n):
 #     """Determines the digit distance of n.
@@ -61,31 +61,45 @@ num_eights(86380)
 #     ...       ['For', 'While'])
 #     True
 #     """
-#     "*** YOUR CODE HERE ***"
+#     if n < 10:
+#         return 0
+#     else: 
+#         return abs((n % 10) - digit_distance(n // 10))
 
 
-# def interleaved_sum(n, odd_func, even_func):
-#     """Compute the sum odd_func(1) + even_func(2) + odd_func(3) + ..., up
-#     to n.
+def interleaved_sum(n, odd_func, even_func):
+    """Compute the sum odd_func(1) + even_func(2) + odd_func(3) + ..., up
+    to n.
 
-#     >>> identity = lambda x: x
-#     >>> square = lambda x: x * x
-#     >>> triple = lambda x: x * 3
-#     >>> interleaved_sum(5, identity, square) # 1   + 2*2 + 3   + 4*4 + 5
-#     29
-#     >>> interleaved_sum(5, square, identity) # 1*1 + 2   + 3*3 + 4   + 5*5
-#     41
-#     >>> interleaved_sum(4, triple, square)   # 1*3 + 2*2 + 3*3 + 4*4
-#     32
-#     >>> interleaved_sum(4, square, triple)   # 1*1 + 2*3 + 3*3 + 4*3
-#     28
-#     >>> from construct_check import check
-#     >>> check(HW_SOURCE_FILE, 'interleaved_sum', ['While', 'For', 'Mod']) # ban loops and %
-#     True
-#     >>> check(HW_SOURCE_FILE, 'interleaved_sum', ['BitAnd', 'BitOr', 'BitXor']) # ban bitwise operators, don't worry about these if you don't know what they are
-#     True
-#     """
-#     "*** YOUR CODE HERE ***"
+    >>> identity = lambda x: x
+    >>> square = lambda x: x * x
+    >>> triple = lambda x: x * 3
+    >>> interleaved_sum(5, identity, square) # 1   + 2*2 + 3   + 4*4 + 5
+    29
+    >>> interleaved_sum(5, square, identity) # 1*1 + 2   + 3*3 + 4   + 5*5
+    41
+    >>> interleaved_sum(4, triple, square)   # 1*3 + 2*2 + 3*3 + 4*4
+    32
+    >>> interleaved_sum(4, square, triple)   # 1*1 + 2*3 + 3*3 + 4*3
+    28
+    >>> from construct_check import check
+    >>> check(HW_SOURCE_FILE, 'interleaved_sum', ['While', 'For', 'Mod']) # ban loops and %
+    True
+    >>> check(HW_SOURCE_FILE, 'interleaved_sum', ['BitAnd', 'BitOr', 'BitXor']) # ban bitwise operators, don't worry about these if you don't know what they are
+    True
+    """
+    if n == 1 :
+        return odd_func(n)
+    else:
+        def interleaved_sum(k):
+            return odd_func(k) + even_func(k + 1)
+        return interleaved_sum
+
+def odd_func(k):
+    return lambda k
+
+def even_func(k + 1):
+    return lambda (k + 1)
 
 
 # def next_smaller_dollar(bill):
