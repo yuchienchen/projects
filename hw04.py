@@ -1,28 +1,28 @@
-def shuffle(s):
-    """Return a shuffled list that interleaves the two halves of s.
+# def shuffle(s):
+#     """Return a shuffled list that interleaves the two halves of s.
 
-    >>> shuffle(range(6))
-    [0, 3, 1, 4, 2, 5]
-    >>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-    >>> shuffle(letters)
-    ['a', 'e', 'b', 'f', 'c', 'g', 'd', 'h']
-    >>> shuffle(shuffle(letters))
-    ['a', 'c', 'e', 'g', 'b', 'd', 'f', 'h']
-    >>> letters  # Original list should not be modified
-    ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-    """
-    assert len(s) % 2 == 0, 'len(seq) must be even'
-    s0 = s[:int(len(s)/2)]
-    s1 = s[int(len(s)/2):]
-    print(s0)
-    print(s1)
-    s2 = []
-    for i in range(int(len(s0))):
-        s2.append(s0[i])
-        for j in range(int(len(s1))):
-            if j == i:
-                s2.append(s1[j])
-    print(s2)
+#     >>> shuffle(range(6))
+#     [0, 3, 1, 4, 2, 5]
+#     >>> letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+#     >>> shuffle(letters)
+#     ['a', 'e', 'b', 'f', 'c', 'g', 'd', 'h']
+#     >>> shuffle(shuffle(letters))
+#     ['a', 'c', 'e', 'g', 'b', 'd', 'f', 'h']
+#     >>> letters  # Original list should not be modified
+#     ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+#     """
+#     assert len(s) % 2 == 0, 'len(seq) must be even'
+#     s0 = s[:int(len(s)/2)]
+#     s1 = s[int(len(s)/2):]
+#     print(s0)
+#     print(s1)
+#     s2 = []
+#     for i in range(int(len(s0))):
+#         s2.append(s0[i])
+#         for j in range(int(len(s1))):
+#             if j == i:
+#                 s2.append(s1[j])
+#     print(s2)
 
 # def deep_map(f, s):
 #     """Replace all non-list elements x with f(x) in the nested list s.
@@ -49,48 +49,48 @@ def shuffle(s):
 #     "*** YOUR CODE HERE ***"
 
 
-# HW_SOURCE_FILE=__file__
+HW_SOURCE_FILE=__file__
 
 
-# def planet(mass):
-#     """Construct a planet of some mass."""
-#     assert mass > 0
-#     "*** YOUR CODE HERE ***"
+def planet(mass):
+    """Construct a planet of some mass."""
+    assert mass > 0
+    return ['planet', mass]
 
-# def mass(p):
-#     """Select the mass of a planet."""
-#     assert is_planet(p), 'must call mass on a planet'
-#     "*** YOUR CODE HERE ***"
+def mass(p):
+    """Select the mass of a planet."""
+    assert is_planet(p), 'must call mass on a planet'
+    return p[1]
 
-# def is_planet(p):
-#     """Whether p is a planet."""
-#     return type(p) == list and len(p) == 2 and p[0] == 'planet'
+def is_planet(p):
+    """Whether p is a planet."""
+    return type(p) == list and len(p) == 2 and p[0] == 'planet'
 
-# def examples():
-#     t = mobile(arm(1, planet(2)),
-#                arm(2, planet(1)))
-#     u = mobile(arm(5, planet(1)),
-#                arm(1, mobile(arm(2, planet(3)),
-#                              arm(3, planet(2)))))
-#     v = mobile(arm(4, t), arm(2, u))
-#     return t, u, v
+def examples():
+    t = mobile(arm(1, planet(2)),
+               arm(2, planet(1)))
+    u = mobile(arm(5, planet(1)),
+               arm(1, mobile(arm(2, planet(3)),
+                             arm(3, planet(2)))))
+    v = mobile(arm(4, t), arm(2, u))
+    return t, u, v
 
-# def total_mass(m):
-#     """Return the total mass of m, a planet or mobile.
+def total_mass(m):
+    """Return the total mass of m, a planet or mobile.
 
-#     >>> t, u, v = examples()
-#     >>> total_mass(t)
-#     3
-#     >>> total_mass(u)
-#     6
-#     >>> total_mass(v)
-#     9
-#     """
-#     if is_planet(m):
-#         return mass(m)
-#     else:
-#         assert is_mobile(m), "must get total mass of a mobile or a planet"
-#         return total_mass(end(left(m))) + total_mass(end(right(m)))
+    >>> t, u, v = examples()
+    >>> total_mass(t)
+    3
+    >>> total_mass(u)
+    6
+    >>> total_mass(v)
+    9
+    """
+    if is_planet(m):
+        return mass(m)
+    else:
+        assert is_mobile(m), "must get total mass of a mobile or a planet"
+        return total_mass(end(left(m))) + total_mass(end(right(m)))
 
 # def balanced(m):
 #     """Return whether m is balanced.
@@ -135,7 +135,7 @@ def shuffle(s):
 #     "*** YOUR CODE HERE ***"
 
 
-# HW_SOURCE_FILE=__file__
+HW_SOURCE_FILE=__file__
 
 
 # def max_path_sum(t):
@@ -150,44 +150,44 @@ def shuffle(s):
 #     "*** YOUR CODE HERE ***"
 
 
-# def mobile(left, right):
-#     """Construct a mobile from a left arm and a right arm."""
-#     assert is_arm(left), "left must be an arm"
-#     assert is_arm(right), "right must be an arm"
-#     return ['mobile', left, right]
+def mobile(left, right):
+    """Construct a mobile from a left arm and a right arm."""
+    assert is_arm(left), "left must be an arm"
+    assert is_arm(right), "right must be an arm"
+    return ['mobile', left, right]
 
-# def is_mobile(m):
-#     """Return whether m is a mobile."""
-#     return type(m) == list and len(m) == 3 and m[0] == 'mobile'
+def is_mobile(m):
+    """Return whether m is a mobile."""
+    return type(m) == list and len(m) == 3 and m[0] == 'mobile'
 
-# def left(m):
-#     """Select the left arm of a mobile."""
-#     assert is_mobile(m), "must call left on a mobile"
-#     return m[1]
+def left(m):
+    """Select the left arm of a mobile."""
+    assert is_mobile(m), "must call left on a mobile"
+    return m[1]
 
-# def right(m):
-#     """Select the right arm of a mobile."""
-#     assert is_mobile(m), "must call right on a mobile"
-#     return m[2]
+def right(m):
+    """Select the right arm of a mobile."""
+    assert is_mobile(m), "must call right on a mobile"
+    return m[2]
 
-# def arm(length, mobile_or_planet):
-#     """Construct an arm: a length of rod with a mobile or planet at the end."""
-#     assert is_mobile(mobile_or_planet) or is_planet(mobile_or_planet)
-#     return ['arm', length, mobile_or_planet]
+def arm(length, mobile_or_planet):
+    """Construct an arm: a length of rod with a mobile or planet at the end."""
+    assert is_mobile(mobile_or_planet) or is_planet(mobile_or_planet)
+    return ['arm', length, mobile_or_planet]
 
-# def is_arm(s):
-#     """Return whether s is an arm."""
-#     return type(s) == list and len(s) == 3 and s[0] == 'arm'
+def is_arm(s):
+    """Return whether s is an arm."""
+    return type(s) == list and len(s) == 3 and s[0] == 'arm'
 
-# def length(s):
-#     """Select the length of an arm."""
-#     assert is_arm(s), "must call length on an arm"
-#     return s[1]
+def length(s):
+    """Select the length of an arm."""
+    assert is_arm(s), "must call length on an arm"
+    return s[1]
 
-# def end(s):
-#     """Select the mobile or planet hanging at the end of an arm."""
-#     assert is_arm(s), "must call end on an arm"
-#     return s[2]
+def end(s):
+    """Select the mobile or planet hanging at the end of an arm."""
+    assert is_arm(s), "must call end on an arm"
+    return s[2]
 
 
 
